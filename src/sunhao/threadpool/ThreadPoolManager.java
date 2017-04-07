@@ -2,24 +2,6 @@ package sunhao.threadpool;
 
 import java.util.Vector;
 
-/**
- * <p>
- * Title:
- * </p>
- * <p>
- * Description: use to test simple thread pool
- * </p>
- * <p>
- * Copyright: Copyright (c) 2002
- * </p>
- * <p>
- * Company:
- * </p>
- *
- * @author xingyong
- *
- * @version 1.0
- */
 public class ThreadPoolManager {
 
 	/**
@@ -33,17 +15,17 @@ public class ThreadPoolManager {
 	/**
 	 * the vector of threads in pool
 	 */
-	private Vector workThreadVector;
+	private Vector<Thread> workThreadVector;
 	/**
 	 * the vector of tasks
 	 */
-	private Vector taskVector;
+	private Vector<Task> taskVector;
 
 	/**
 	 * @param i
 	 */
 	public ThreadPoolManager(int i) {
-		taskVector = new Vector(10, 10);
+		taskVector = new Vector<Task>(10, 10);
 		// initial thread number
 		defaultThreadNum = 10;
 		if (i > 0)
@@ -78,8 +60,7 @@ public class ThreadPoolManager {
 	 */
 	private void CreateThreadPool(int i) {
 		if (workThreadVector == null)
-			workThreadVector = new Vector(i);
-		Object obj = null;
+			workThreadVector = new Vector<Thread>(i);
 		// create threads
 		synchronized (workThreadVector) {
 			for (int j = 0; j < i; j++) {
@@ -109,7 +90,6 @@ public class ThreadPoolManager {
 	 * destroy threads in pool
 	 */
 	public void closeThread() {
-		Object obj = null;
 
 		while (!workThreadVector.isEmpty()) {
 
@@ -117,9 +97,8 @@ public class ThreadPoolManager {
 				WorkThread workThread = (WorkThread) workThreadVector.remove(0);
 				workThread.closeThread();
 				continue;
-			} catch (Exception exception) {
-
-				exception.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 			break;
 		}

@@ -2,38 +2,15 @@ package sunhao.threadpool;
 
 import java.util.Vector;
 
-/**
- * <p>
- * Title:
- * </p>
- * <p>
- * Description: use to test thread pool
- * </p>
- * <p>
- * Copyright: Copyright (c) 2002
- * </p>
- * <p>
- * Company:
- * </p>
- *
- * @author xingyong
- * 
- * @version 1.0
- */
-
 public class WorkThread extends Thread {
 
 	public int threadNum;
 	private boolean flag;
 
-	private Vector taskVector;
+	private Vector<Task> taskVector;
 	private Task task;
 
-	/**
-	 * @param vector
-	 * @param i
-	 */
-	public WorkThread(java.util.Vector vector, int i) {
+	public WorkThread(Vector<Task> vector, int i) {
 		flag = true;
 		threadNum = i;
 		taskVector = vector;
@@ -83,8 +60,8 @@ public class WorkThread extends Thread {
 			if (task != null){
 				task.endTask();
 			}
-		} catch (Exception exception) {
-			exception.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		synchronized (taskVector) {
 			taskVector.notifyAll();

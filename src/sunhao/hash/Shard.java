@@ -14,8 +14,8 @@ import java.util.TreeMap;
  */
 public class Shard<S> {
 
-	private TreeMap<Long,S> nodes;   //虚拟节点
-	private List<S> shards;   //机器真实节点
+	private TreeMap<Long,S> nodes;   	//虚拟节点
+	private List<S> shards;   			//机器真实节点
 	private final int NODE_NUM = 100;   //每个机器节点关联的虚拟节点的个数
 	
 	public Shard(List<S> shards){
