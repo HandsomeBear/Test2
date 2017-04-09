@@ -1,11 +1,11 @@
-package sunhao.netty.nio;
+package sunhao.netty.aio;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TimeClient {
+public class TimeServer {
 
-	private static final Logger logger = LoggerFactory.getLogger(TimeClient.class);
+	private static final Logger logger = LoggerFactory.getLogger(TimeServer.class);
 	
 	public static void main(String[] args){
 		
@@ -18,6 +18,8 @@ public class TimeClient {
 			}
 		}
 		
-		new Thread(new TimeClientHandle("127.0.0.1", port)).start();
+		AsyncTimeServerHandler timeServer = new AsyncTimeServerHandler(port);
+		
+		new Thread(timeServer).start();
 	}
 }
