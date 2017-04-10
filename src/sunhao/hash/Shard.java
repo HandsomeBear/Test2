@@ -35,6 +35,7 @@ public class Shard<S> {
 		}
 	}
 	
+	@SuppressWarnings("unused")
 	private S getShardInfo(String key){
 		SortedMap<Long,S> tail = nodes.tailMap(hash(key));   //延环的顺时针方向找到一个虚拟节点
 		if(tail.size() == 0){

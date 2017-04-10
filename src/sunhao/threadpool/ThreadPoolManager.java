@@ -2,6 +2,7 @@ package sunhao.threadpool;
 
 import java.util.Vector;
 
+@SuppressWarnings("unused")
 public class ThreadPoolManager {
 
 	/**

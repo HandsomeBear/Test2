@@ -7,10 +7,12 @@ import java.nio.channels.CompletionHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@SuppressWarnings("rawtypes")
 public class AcceptCompletionHandler implements CompletionHandler{
 
 	private static final Logger logger = LoggerFactory.getLogger(AcceptCompletionHandler.class);
 	
+	@SuppressWarnings({ "unused", "unchecked" })
 	@Override
 	public void completed(Object result, Object attachment) {
 		((AsyncTimeServerHandler)attachment).asynchronousServerSocketChannel.accept(attachment,this);

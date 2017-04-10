@@ -3,6 +3,7 @@ package sunhao.other;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.LockSupport;
 
+@SuppressWarnings("unused")
 public class LockS {
 
 	public static void main(String[] args) throws Exception{

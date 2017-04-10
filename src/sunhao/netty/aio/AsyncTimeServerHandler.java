@@ -12,6 +12,7 @@ public class AsyncTimeServerHandler implements Runnable {
 
 	private static final Logger logger = LoggerFactory.getLogger(AsyncTimeServerHandler.class);
 	
+	@SuppressWarnings("unused")
 	private int port;
 	CountDownLatch latch;
 	AsynchronousServerSocketChannel asynchronousServerSocketChannel;
@@ -40,6 +41,7 @@ public class AsyncTimeServerHandler implements Runnable {
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void doAccept() {
 		asynchronousServerSocketChannel.accept(this, new AcceptCompletionHandler());
 	}
