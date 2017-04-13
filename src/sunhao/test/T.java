@@ -1,4 +1,8 @@
 package sunhao.test;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.lang.reflect.Array;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
@@ -6,44 +10,17 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 import com.leagsoft.hjslnotifier.HJSLNotifier;
 import com.leagsoft.hjslnotifier.IHJSLNotifier;
 
 public class T{
 	public static void main(String[] args) throws Exception{
-//		final AtomicInteger at = new AtomicInteger(10);
-//		Thread t1 = new Thread(new Runnable(){
-//			public void run(){
-//				//for(int i = 0; i<10;i++){
-//					int a = at.incrementAndGet();
-//					System.out.println("t1:"+a);
-//				//}
-//			}
-//		});
-//		
-//		Thread t2 = new Thread(new Runnable(){
-//			public void run(){
-//				//for(int i = 0; i<10;i++){
-//					int a = at.decrementAndGet();
-//					System.out.println("t2->"+a);
-//				//}
-//			}
-//		});
-//		
-//		Thread t3 = new Thread(new Runnable(){
-//			public void run(){
-//				//for(int i = 0; i<10;i++){
-//					int a = at.incrementAndGet();
-//					System.out.println("t1:"+a);
-//				//}
-//			}
-//		});
-//		
-//		t1.start();
-//		t3.start();
-//		t2.start();
-		diff();
+		test();
 	}
 	
 	public static void tt() throws Exception{
@@ -171,5 +148,53 @@ public class T{
 			String s = it.next();
 			System.out.print(s);
 		}
+	}
+	
+	public static void regex(){
+		String strdownloadurl = "https://192.168.2.201:80/sfsf";
+		String prefix = strdownloadurl.contains("https")?"https://":"http://";
+		Pattern pattern = Pattern.compile(":");  
+	    Matcher findMatcher = pattern.matcher(strdownloadurl);
+	    int number = 0;  
+        while(findMatcher.find()) {  
+        	number++;  
+            if(number == 2){
+            	break;  
+            }  
+        }  
+        int i = findMatcher.start();
+        System.out.println(prefix+"192.168.2.154"+strdownloadurl.substring(i));
+	}
+	
+	public static void recursionZip() throws Exception{
+		
+		List<File> files = new ArrayList<File>();
+		files.add(new File("C:\\Users\\leagsoft\\Downloads\\ChromeStandalone_55.0.2883.87_Setup.exe"));
+		File dstFile = new File("G:/4ff7-bf762ec5b517143a585-.zip");
+		
+		ZipOutputStream zipOut = null;
+		try{
+			zipOut = new ZipOutputStream(new FileOutputStream(dstFile));
+			byte[] buf = new byte[1024*1024*10];
+			for(File file : files){
+		        InputStream input = new FileInputStream(file);
+		        zipOut.putNextEntry(new ZipEntry(file.getName()));
+		        int len;
+		        while((len = input.read(buf)) != -1){
+		        	zipOut.write(buf, 0, len);
+		        }
+		        input.close();
+			}
+		}catch(Exception e){
+			throw e;
+		}finally{
+			zipOut.close();
+		}
+	}
+	
+	public static void test(){
+		String mainCondition = "";
+		String uidsoftwareid = mainCondition.substring(mainCondition.indexOf("'")+1, mainCondition.lastIndexOf("'"));
+		System.out.println(uidsoftwareid);
 	}
 }
