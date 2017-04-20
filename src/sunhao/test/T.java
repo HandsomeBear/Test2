@@ -6,8 +6,10 @@ import java.io.InputStream;
 import java.lang.reflect.Array;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Matcher;
@@ -193,8 +195,8 @@ public class T{
 	}
 	
 	public static void test(){
-		String mainCondition = "";
-		String uidsoftwareid = mainCondition.substring(mainCondition.indexOf("'")+1, mainCondition.lastIndexOf("'"));
-		System.out.println(uidsoftwareid);
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("a", "1");
+		System.out.println("1".equals(map.get("a")));
 	}
 }
